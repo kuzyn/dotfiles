@@ -136,16 +136,16 @@ mode "resize" {
         # Pressing right will grow the window's width.
         # Pressing up will shrink the window's height.
         # Pressing down will grow the window's height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 1 px or 1 ppt
+        bindsym k resize grow height 1 px or 1 ppt
+        bindsym l resize shrink height 1 px or 1 ppt
+        bindsym semicolon resize grow width 1 px or 1 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -158,6 +158,16 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        colors {
+          background #695c57
+          separator #e9967a
+
+          focused_workspace  #e9967a #e9967a #ffffff
+          active_workspace   #333333 #5f676a #ffffff
+          inactive_workspace #333333 #333333 #888888
+          urgent_workspace   #2f343a #900000 #ffffff
+          binding_mode       #2f343a #900000 #ffffff
+    }
 }
 
 
@@ -165,13 +175,10 @@ bar {
 ### kuzyn stuff
 ###
 
-# bootscript
-# exec --no-startup-id /home/kuzyn/.config/scripts/i3_boot.sh
-
-# keyboard layout
+# Keyboard layout
 bindsym $mod+space exec /home/kuzyn/.config/scripts/toggle_keybinding.sh 
 
-# wallaper
+# Wallpaper
 exec_always feh --bg-scale /home/kuzyn/docs/wallpaper.jpg
 
 # Close windows
@@ -200,9 +207,19 @@ bindsym XF86AudioNext exec cmus-remote --next
 bindsym XF86AudioPrev exec cmus-remote --prev
 bindsym XF86AudioStop exec cmus-remote --stop
 
+# Screenshot
+bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
+
 # autostart
 #exec_always google-chrome-stable
 #exec --no-startup-id i3-msg workspace $ws10; exec urxvt -e cmus
 
 # autoassign
 #assign [class="Google-chrome"] $ws1
+
+# colors
+# border  background text indicator
+client.focused          #e9967a #e9967a #ffffff #222222
+client.focused_inactive #222222 #222222 #ffffff #222222
+client.unfocused        #222222 #222222 #ffffff #222222
+client.urgent           #f3c5b6 #f3c5b6 #ffffff #222222

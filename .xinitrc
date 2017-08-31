@@ -30,13 +30,23 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# kuzyn stuff
+###
+### kuzyn stuff
+###
+
+# set
+xset -b
 setxkbmap gb
+
+# spawn
 udiskie &
 pulseaudio &
 
+# globals
+export LANG=en_GB.UTF-8
 export EDITOR='nvim'
 export TERM='xterm-256color'
 export TERMINAL='urxvt'
 
+# wm
 exec i3

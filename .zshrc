@@ -11,22 +11,24 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/kuzyn/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/home/kuzyn/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/kuzyn/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/kuzyn/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-# kuzyn stuff
+###
+### kuzyn stuff
+###
 
 # Aliases
-alias ls='ls -l --color=auto'
+alias ls='ls -lh --color=auto'
 alias vim='nvim'
 alias stats='archey3'
-alias lsa='ls -la'
+alias lsa='ls -lah'
 alias chrome='google-chrome-stable'
+alias md='grip -b'
 
 # Prompt
 # PS1='%B%F{210}%n%b%F{224}@%f%B%F{210}%M%f%b%F{224}%% %f%b'
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/bin/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/bin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/bin/google-cloud-sdk/completion.zsh.inc'; fi
