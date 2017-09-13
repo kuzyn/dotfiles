@@ -72,14 +72,19 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 
 "md files
 "au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
 "let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=1
 "let vim_markdown_preview_github=1
+
+" pasting
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 " keymaps
 nmap <silent> <C-l> <Plug>(jsdoc)

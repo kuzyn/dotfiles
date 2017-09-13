@@ -22,9 +22,10 @@ alias stats='archey3'
 alias lsa='ls -lah'
 alias chrome='google-chrome-stable'
 alias md='grip -b'
+alias gl='git log --oneline -n10'
 
 # Prompt
-# PS1='%B%F{210}%n%b%F{224}@%f%B%F{210}%M%f%b%F{224}%% %f%b'
+PS1='%B%F{210}%n@%M%f%b%F{224}%% %f%b'
 
 
 # The next line updates PATH for the Google Cloud SDK.
