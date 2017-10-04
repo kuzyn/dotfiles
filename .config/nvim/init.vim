@@ -8,6 +8,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-syntastic/syntastic'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   "js
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
@@ -30,8 +32,9 @@ set tabstop=2
 set expandtab
 set shiftwidth=2
 set updatetime=250
-set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
+"set colorcolumn=80
+"highlight ColorColumn ctermbg=darkgray
+match ErrorMsg '\%>80v.\+'
 set clipboard=unnamed
 set undolevels=100
 set guifont=Hack
@@ -80,6 +83,10 @@ let g:syntastic_check_on_wq = 1
 "let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=1
 "let vim_markdown_preview_github=1
+
+"NERDtree
+"autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 " pasting
 nnoremap <F2> :set invpaste paste?<CR>

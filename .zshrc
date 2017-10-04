@@ -23,13 +23,23 @@ alias lsa='ls -lah'
 alias chrome='google-chrome-stable'
 alias md='grip -b'
 alias gl='git log --oneline -n10'
+alias gb='git branch --all'
+alias ws='sudo netctl stop-all'
+alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
+alias wh='ws; sudo netctl start wlp3s0-sweetthursday'
+alias sd='source ~/.zshrc'
+alias ed='nvim ~/.zshrc'
+alias ei3='nvim ~/.config/i3/config'
+alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
 
 # Prompt
-PS1='%B%F{210}%n@%M%f%b%F{224}%% %f%b'
+PS1='%B%F{210}%n(λ)%M%f%b%F{224}‡ %f%b'
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/bin/google-cloud-sdk/path.zsh.inc' ]; then source '/usr/local/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/usr/local/bin/google-cloud-sdk/path.zsh.inc' ]; 
+  then source '/usr/local/bin/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/usr/local/bin/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/usr/local/bin/google-cloud-sdk/completion.zsh.inc' ]; 
+  then source '/usr/local/bin/google-cloud-sdk/completion.zsh.inc'; fi
