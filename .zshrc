@@ -29,6 +29,7 @@ alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
 alias wh='ws; sudo netctl start wlp3s0-sweetthursday'
 alias sd='source ~/.zshrc'
 alias ed='nvim ~/.zshrc'
+alias ev='nvim ~/.config/nvim/init.vim'
 alias ei3='nvim ~/.config/i3/config'
 alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
 

@@ -5,8 +5,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
   Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'vim-syntastic/syntastic'
+  "Plug 'vim-syntastic/syntastic'
+  Plug 'w0rp/ale'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -37,16 +39,18 @@ set updatetime=250
 match ErrorMsg '\%>80v.\+'
 set clipboard=unnamed
 set undolevels=100
-set guifont=Hack
+" set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
 
 "theme
 syntax enable
 colorscheme tender
 
 "airline
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_powerline_fonts = 1 
 let g:airline_theme = 'tender'
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 "gitgutter
 set signcolumn=yes
@@ -68,15 +72,15 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
 " syntastic
-let g:syntastic_javascript_checkers=['eslint']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"let g:syntastic_javascript_checkers=['eslint']
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 1
 
 "md files
 "au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
@@ -88,10 +92,14 @@ let g:syntastic_check_on_wq = 1
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
+"sessions
+map <F2> :mksession! ~/.config/nvim/vim_session <cr>
+map <F3> :source ~/.config/nvim/vim_session <cr>
+
 " pasting
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set showmode
+"nnoremap <F2> :set invpaste paste?<CR>
+"set pastetoggle=<F2>
+"set showmode
 
 " keymaps
 nmap <silent> <C-l> <Plug>(jsdoc)

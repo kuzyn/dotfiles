@@ -157,10 +157,10 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
+    status_command i3blocks 
     tray_output LVDS1
     colors {
-      background #695c57
+      background #e9967a
       separator #e9967a
 
       focused_workspace  #e9967a #e9967a #ffffff
@@ -218,7 +218,12 @@ bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 # autoassign
 #assign [class="Google-chrome"] $ws1
 
+# toggle workspace to output
+bindsym $mod+m move workspace to output left
 
+# go to next/prev workspace
+bindsym $mod+n workspace next
+bindsym $mod+Shift+n workspace prev 
 
 # colors
 # border  background text indicator
