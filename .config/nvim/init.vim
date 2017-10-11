@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'gioele/vim-autoswap'
   "Plug 'vim-syntastic/syntastic'
   Plug 'w0rp/ale'
   Plug 'jiangmiao/auto-pairs'
@@ -40,6 +41,9 @@ match ErrorMsg '\%>80v.\+'
 set clipboard=unnamed
 set undolevels=100
 " set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
+set wildchar=<Tab> wildmenu wildmode=full
+set splitbelow
+set splitright
 
 "theme
 syntax enable
@@ -90,11 +94,11 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
 "NERDtree
 "autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 
 "sessions
-map <F2> :mksession! ~/.config/nvim/vim_session <cr>
-map <F3> :source ~/.config/nvim/vim_session <cr>
+nmap <F2> :mksession! ~/.config/nvim/vim_session <cr>
+nmap <F3> :source ~/.config/nvim/vim_session <cr>
 
 " pasting
 "nnoremap <F2> :set invpaste paste?<CR>
@@ -102,5 +106,9 @@ map <F3> :source ~/.config/nvim/vim_session <cr>
 "set showmode
 
 " keymaps
-nmap <silent> <C-l> <Plug>(jsdoc)
 nmap <silent> <C-h> :set hlsearch! 
+nmap <silent> <C-l> <Plug>(jsdoc)
+nmap <silent> <C-s> :bnext <CR>
+nmap <silent> <C-a> :bprevious <CR>
+nmap + ddp
+nmap _ ddkP

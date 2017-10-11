@@ -83,6 +83,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# color variables
+set $color1 #e9967a
+
 # workspaces variables
 set $ws1 "1> browser"
 set $ws2 "2> work"
@@ -126,7 +129,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -162,12 +165,11 @@ bar {
     colors {
       background #e9967a
       separator #e9967a
-
-      focused_workspace  #e9967a #e9967a #ffffff
-      active_workspace   #333333 #5f676a #ffffff
-      inactive_workspace #333333 #333333 #888888
-      urgent_workspace   #2f343a #900000 #ffffff
-      binding_mode       #2f343a #900000 #ffffff
+      focused_workspace  #e9967a #e9967a #ffddd1
+      active_workspace   #c16548 #c16548 #ffddd1
+      inactive_workspace #ffc2ac #ffc2ac #c16648
+      urgent_workspace   #2f343a #9c4324 #ffddd1
+      binding_mode       #2f343a #c16548 #ffddd1
     }
 }
 
@@ -177,22 +179,22 @@ bar {
 ###
 
 # Keyboard layout
-bindsym $mod+space exec /home/kuzyn/.config/scripts/toggle_keybinding.sh 
+bindsym $mod+space exec ~/.config/scripts/toggle_keybinding.sh 
 
 # Wallpaper
-exec_always feh --bg-scale /home/kuzyn/docs/wallpaper.jpg
+exec_always feh --bg-scale ~/docs/wallpaper.png
 
 # Close windows
 bindsym $mod+Shift+q kill
 
 # Lock
-bindsym $mod+Shift+x exec i3lock
-bindsym XF86ScreenSaver exec i3lock
+bindsym $mod+Shift+x exec i3lock -i ~/docs/wallpaper.png
+bindsym XF86ScreenSaver exec i3lock -i ~/docs/wallpaper.png
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -200,6 +202,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
+
+# Screen enable
+bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left 
 
 # Media player controls
 bindsym XF86AudioPlay exec cmus-remote --pause
@@ -223,11 +228,10 @@ bindsym $mod+m move workspace to output left
 
 # go to next/prev workspace
 bindsym $mod+n workspace next
-bindsym $mod+Shift+n workspace prev 
 
 # colors
 # border  background text indicator
-client.focused          #e9967a #e9967a #ffffff #222222
-client.focused_inactive #222222 #222222 #ffffff #222222
-client.unfocused        #222222 #222222 #ffffff #222222
-client.urgent           #f3c5b6 #f3c5b6 #ffffff #222222
+client.focused          #e9967a #e9967a #ffddd1 #c16548
+client.focused_inactive #c16548 #c16548 #ffddd1 #c16548
+client.unfocused        #c16548 #c16548 #ffddd1 #c16548 
+client.urgent           #f3c5b6 #f3c5b6 #ffddd1 #c16548
