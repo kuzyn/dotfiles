@@ -32,18 +32,19 @@ set number
 set relativenumber
 set encoding=utf-8
 set tabstop=2
-set expandtab
 set shiftwidth=2
+set expandtab
 set updatetime=250
 "set colorcolumn=80
-"highlight ColorColumn ctermbg=darkgray
-match ErrorMsg '\%>80v.\+'
+call matchadd('ColorColumn', '\%>81v\+', 100)
 set clipboard=unnamed
 set undolevels=100
 " set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
 set wildchar=<Tab> wildmenu wildmode=full
 set splitbelow
 set splitright
+set wildignore=/home/kuzyn/code/**/node_modules/**
+set hidden
 
 "theme
 syntax enable
