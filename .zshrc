@@ -1,8 +1,9 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt APPEND_HISTORY HIST_IGNORE_ALL_DUPS
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
 
 bindkey -v
 # End of lines configured by zsh-newuser-install
