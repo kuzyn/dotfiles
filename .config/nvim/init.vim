@@ -4,8 +4,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jacoborus/tender.vim'
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
+  Plug 'mileszs/ack.vim'
+  Plug 'junegunn/fzf' 
+  Plug 'junegunn/fzf.vim'
+  Plug 'itchyny/lightline.vim'
+  Plug 'mgee/lightline-bufferline'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'gioele/vim-autoswap'
   "Plug 'vim-syntastic/syntastic'
@@ -16,7 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
   "js
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-  Plug 'mtscout6/syntastic-local-eslint.vim'
+  " Plug 'mtscout6/syntastic-local-eslint.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'heavenshell/vim-jsdoc'
   "git
@@ -38,24 +43,26 @@ set updatetime=250
 "set colorcolumn=80
 call matchadd('ColorColumn', '\%>81v\+', 100)
 set clipboard=unnamed
-set undolevels=100
+set undolevels=300
 " set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
 set wildchar=<Tab> wildmenu wildmode=full
 set splitbelow
 set splitright
 set wildignore=/home/kuzyn/code/**/node_modules/**
 set hidden
+set showtabline=2
 
 "theme
 syntax enable
 colorscheme tender
+highlight clear SignColumn
 
 "airline
-let g:airline_powerline_fonts = 1 
-let g:airline_theme = 'tender'
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_powerline_fonts = 1 
+" let g:airline_theme = 'tender'
+" let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 "gitgutter
 set signcolumn=yes
@@ -93,13 +100,29 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 "let vim_markdown_preview_toggle=1
 "let vim_markdown_preview_github=1
 
-"NERDtree
+" lightline
+let g:lightline = {}
+let g:lightline.active = {} 
+let g:lightline.active.left = [['mode', 'paste'], ['gitbranch', 'filename', 'modified']]
+let g:lightline.active.right = [['lineinfo'], ['percent'], ['readonly']]
+let g:lightline.component_type = { 'readonly': 'error', 'buffers': 'tabsel' }
+let g:lightline.component_function = {'gitbranch': 'fugitive#head'}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+
+" NERDtree
 "autocmd vimenter * NERDTree
 nmap <C-n> :NERDTreeToggle<CR>
 
-"sessions
-nmap <F2> :mksession! ~/.config/nvim/vim_session <cr>
-nmap <F3> :source ~/.config/nvim/vim_session <cr>
+" ack.vim
+let g:ackprg = 'ag --vimgrep'
+
+" fzf
+set rtp+=/usr/bin/fzf
+
+" sessions
+nmap <F2> :mksession! ~/.config/nvim/vim_session<CR>
+nmap <F3> :source ~/.config/nvim/vim_session<CR>
 
 " pasting
 "nnoremap <F2> :set invpaste paste?<CR>
@@ -107,9 +130,13 @@ nmap <F3> :source ~/.config/nvim/vim_session <cr>
 "set showmode
 
 " keymaps
-nmap <silent> <C-h> :set hlsearch! 
-nmap <silent> <C-l> <Plug>(jsdoc)
-nmap <silent> <C-s> :bnext <CR>
+nmap <silent> <C-h> :set hlsearch!<CR>
+nmap <silent> <C-s> :bnext<CR>
 nmap <silent> <C-a> :bprevious <CR>
-nmap + ddp
-nmap _ ddkP
+nmap <silent> <C-j> <Plug>(jsdoc)
+nmap <silent> <C-z> <Plug>(ale_previous_wrap)
+nmap <silent> <C-x> <Plug>(ale_next_wrap)
+nmap <slient> + ddp
+nmap <silent> _ ddkP
+nmap <silent> ; :Buffers<CR>
+nmap <silent> <C-l> :Files<CR>
