@@ -132,11 +132,12 @@ nmap <F3> :source ~/.config/nvim/vim_session<CR>
 " keymaps
 nmap <silent> <C-h> :set hlsearch!<CR>
 nmap <silent> <C-s> :bnext<CR>
-nmap <silent> <C-a> :bprevious <CR>
+nmap <silent> <C-a> :bprevious<CR>
 nmap <silent> <C-j> <Plug>(jsdoc)
 nmap <silent> <C-z> <Plug>(ale_previous_wrap)
 nmap <silent> <C-x> <Plug>(ale_next_wrap)
-nmap <slient> + ddp
+nmap <silent> + ddp
 nmap <silent> _ ddkP
 nmap <silent> ; :Buffers<CR>
 nmap <silent> <C-l> :Files<CR>
+nmap <silent> <C-c> :bp\|bd #<CR>
