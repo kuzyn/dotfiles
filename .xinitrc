@@ -40,7 +40,7 @@ setxkbmap gb
 
 # spawn
 udiskie &
-pulseaudio &
+pulseaudio -D
 
 # globals
 export LANG=en_GB.UTF-8

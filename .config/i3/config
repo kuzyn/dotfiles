@@ -33,7 +33,7 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -i -nb '#e9967a' -nf '#ffddd1'
+bindsym $mod+d exec dmenu_run -i -nb '#e9967a' -nf '#ffddd1' -sb '#c16548'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -95,7 +95,7 @@ set $ws5 "5> term2"
 set $ws6 "6> wtv"
 set $ws7 "7> wtv"
 set $ws8 "8> wtv"
-set $ws9 "9> sound"
+set $ws9 "9> irc"
 set $ws10 "10> chat"
 
 # switch to workspace
@@ -223,7 +223,7 @@ bindsym $mod+Shift+a exec maim -s ~/downloads/$(date +%s).png
 #exec --no-startup-id i3-msg workspace $ws10; exec urxvt -e cmus
 
 # autoassign
-#assign [class="Google-chrome"] $ws1
+assign [class="Slack"] $ws10
 
 # toggle workspace to output
 bindsym $mod+m move workspace to output left

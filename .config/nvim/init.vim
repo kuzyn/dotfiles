@@ -66,6 +66,7 @@ highlight clear SignColumn
 
 "gitgutter
 set signcolumn=yes
+let g:gitgutter_max_signs=9999
 
 "deoplete
 let g:deoplete#enable_at_startup = 1
