@@ -94,7 +94,7 @@ set $ws4 "4> term1"
 set $ws5 "5> term2"
 set $ws6 "6> wtv"
 set $ws7 "7> wtv"
-set $ws8 "8> wtv"
+set $ws8 "8> cmus"
 set $ws9 "9> irc"
 set $ws10 "10> chat"
 
