@@ -30,19 +30,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-rhubarb'
   "md
   "Plug 'JamshedVesuna/vim-markdown-preview'
+  "py
+  Plug 'python-mode/python-mode', {'branch': 'develop'}
 call plug#end()
 
 "editor
 set number
 set relativenumber
 set encoding=utf-8
-set tabstop=2
-set shiftwidth=2
-set expandtab
 set updatetime=250
 "set colorcolumn=80
 call matchadd('ColorColumn', '\%>81v\+', 100)
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set undolevels=300
 " set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
 set wildchar=<Tab> wildmenu wildmode=full
@@ -51,6 +50,10 @@ set splitright
 set wildignore=/home/kuzyn/code/**/node_modules/**
 set hidden
 set showtabline=2
+set fileformat=unix
+set expandtab 
+set autoindent
+filetype plugin indent on
 
 "theme
 syntax enable
@@ -100,6 +103,22 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 "let vim_markdown_preview_use_xdg_open=1
 "let vim_markdown_preview_toggle=1
 "let vim_markdown_preview_github=1
+
+" pymode
+let pymode_lint_cwindow = 0
+let python_lint_async = 1
+
+" Python
+au FileType python set shiftwidth=4 tabstop=4 softtabstop=4 
+let g:pymode_python = 'python3'
+
+"Javascript
+au BufNewFile,BufRead *.js,*.json set tabstop=2 shiftwidth=2 
+
+"ale
+let g:ale_fixers = {
+      \  'javascript': ['eslint']
+      \}
 
 " lightline
 let g:lightline = {}

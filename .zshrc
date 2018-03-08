@@ -40,10 +40,7 @@ _has() {
 ###########
 ###########
 
-
-
 # Aliases
-alias c='cd ~/code/'
 alias cat='pygmentize -g'
 alias chrome='google-chrome-stable'
 alias ei3='nvim ~/.config/i3/config'
@@ -51,20 +48,19 @@ alias ev='nvim ~/.config/nvim/init.vim'
 alias ez='nvim ~/.zshrc'
 alias gb='git branch --all'
 alias gl='git log --oneline -n10'
-alias h='cd ~'
+alias lists='nvim ~/write/lists/'
 alias ls='ls -h --color=auto'
 alias lsa='ls -lha --color=auto'
 alias md='grip -b'
 alias mkdir='mkdir -p'
-alias o='cd ~/code/ox'
-alias ox='cd ~/code/ox'
 alias pdf-view='apvlv'
-alias s='alsactl restore && pulseaudio -k && pulseaudio -D'
+alias reload-xresources='xrdb ~/.Xresources'
 alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
 alias stats='archey3'
 alias sz='source ~/.zshrc'
 alias vim='nvim'
-alias wh='ws; sudo netctl start wlp3s0-mableybabelies'
+alias wh='ws; sudo netctl start wlp3s0-SKYB8BE5'
+alias write='nvim ~/write/'
 alias ws='sudo netctl stop-all'
 alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
 
