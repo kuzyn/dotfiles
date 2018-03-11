@@ -32,6 +32,9 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'JamshedVesuna/vim-markdown-preview'
   "py
   Plug 'python-mode/python-mode', {'branch': 'develop'}
+  "elixir
+  Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 
 "editor
