@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 9
+font pango:Source Code Pro 9 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -92,8 +92,8 @@ set $ws2 "2> work"
 set $ws3 "3> editor"
 set $ws4 "4> term1"
 set $ws5 "5> term2"
-set $ws6 "6> wtv"
-set $ws7 "7> wtv"
+set $ws6 "6> wtv1"
+set $ws7 "7> wtv2"
 set $ws8 "8> cmus"
 set $ws9 "9> irc"
 set $ws10 "10> chat"
@@ -160,17 +160,15 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:monospace 9
     status_command i3blocks 
     tray_output LVDS1
     colors {
       background #e9967a
       separator #e9967a
-      focused_workspace  #e9967a #e9967a #ffddd1
+      inactive_workspace  #e9967a #e9967a #ffddd1
       active_workspace   #c16548 #c16548 #ffddd1
-      inactive_workspace #ffc2ac #ffc2ac #c16648
+      focused_workspace #ffc2ac #ffc2ac #c16648
       urgent_workspace   #2f343a #9c4324 #ffddd1
-      binding_mode       #2f343a #c16548 #ffddd1
     }
 }
 
@@ -183,7 +181,7 @@ bar {
 bindsym $mod+space exec ~/.config/scripts/toggle_keybinding.sh 
 
 # Wallpaper
-exec_always feh --bg-scale ~/docs/wallpaper.png
+exec_always feh --bg-fill ~/docs/wallpaper.png
 
 # Close windows
 bindsym $mod+Shift+q kill
@@ -233,11 +231,30 @@ bindsym $mod+n workspace next
 
 # colors
 # border  background text indicator
-client.focused          #e9967a #e9967a #ffddd1 #c16548
-client.focused_inactive #c16548 #c16548 #ffddd1 #c16548
-client.unfocused        #c16548 #c16548 #ffddd1 #c16548 
-client.urgent           #f3c5b6 #f3c5b6 #ffddd1 #c16548
+client.focused                  #e9967a #e9967a #ffddd1 #e9967a 
+client.focused_inactive         #e9967a #e9967a #ffddd1 #e9967a 
+#client.focused_inactive        #c16548 #c16548 #ffddd1 #e9967a 
+#client.unfocused               #c16548 #c16548 #ffddd1 #e9967a 
+client.unfocused                #e9967a #e9967a #ffddd1 #e9967a 
+client.urgent                   #f3c5b6 #f3c5b6 #ffddd1 #e9967a 
+client.background               #e9967a
 
 # program window specifics
-for_window [window_role="GtkFileChooserDialog"] resize shrink height 200px
+for_window [window_role="GtkFileChooserDialog"] resize shrink height 400px
+
+
+
+# border / titlebar
+for_window [class="^.*"] border pixel 0
+for_window [workspace="browser"] border pixel 50
+for_window [workspace="work"] border pixel 50
+for_window [workspace="editor"] border pixel 1
+for_window [workspace="term1"] border pixel 50
+for_window [workspace="term2"] border pixel 50
+for_window [workspace="wtv1"] border pixel 25
+for_window [workspace="wtv2"] border pixel 25
+for_window [workspace="cmus"] border pixel 50
+for_window [workspace="irc"] border pixel 100
+for_window [workspace="chat"] border pixel 100
+new_window 1pixel
 
