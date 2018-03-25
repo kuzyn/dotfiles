@@ -48,5 +48,8 @@ export EDITOR='nvim'
 export TERM='xterm-256color'
 export TERMINAL='termite'
 
+# yarn
+export PATH="$PATH:`~/.yarn/bin`"
+
 # wm
 exec i3

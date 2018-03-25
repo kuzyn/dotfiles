@@ -41,8 +41,10 @@ _has() {
 ###########
 
 # Aliases
+alias br='sudo systemctl restart bluetooth'
 alias cat='pygmentize -g'
 alias chrome='google-chrome-stable'
+alias define='dict -d wn'
 alias ei3='nvim ~/.config/i3/config'
 alias ev='nvim ~/.config/nvim/init.vim'
 alias ez='nvim ~/.zshrc'
@@ -54,10 +56,12 @@ alias lsa='ls -lha --color=auto'
 alias md='grip -b'
 alias mkdir='mkdir -p'
 alias pdf-view='apvlv'
+alias rb='sudo systemctl restart bluetooth'
 alias reload-xresources='xrdb ~/.Xresources'
 alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
 alias stats='archey3'
 alias sz='source ~/.zshrc'
+alias thesaurus='dict -d moby-thesaurus'
 alias vim='nvim'
 alias wh='ws; sudo netctl start wlp3s0-SKYB8BE5'
 alias write='nvim ~/write/'

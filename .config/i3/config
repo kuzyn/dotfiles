@@ -242,8 +242,6 @@ client.background               #e9967a
 # program window specifics
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 400px
 
-
-
 # border / titlebar
 for_window [class="^.*"] border pixel 0
 for_window [workspace="browser"] border pixel 50
@@ -254,7 +252,7 @@ for_window [workspace="term2"] border pixel 50
 for_window [workspace="wtv1"] border pixel 25
 for_window [workspace="wtv2"] border pixel 25
 for_window [workspace="cmus"] border pixel 50
-for_window [workspace="irc"] border pixel 100
-for_window [workspace="chat"] border pixel 100
+for_window [workspace="irc"] border pixel 50
+for_window [workspace="chat"] border pixel 50
 new_window 1pixel
 
