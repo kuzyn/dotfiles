@@ -163,4 +163,3 @@ nmap <silent> + ddp
 nmap <silent> _ ddkP
 nmap <silent> ; :Buffers<CR>
 nmap <silent> <C-l> :Files<CR>
-nmap <silent> <C-c> :bp\|bd #<CR>
