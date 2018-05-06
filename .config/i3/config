@@ -203,7 +203,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
 
 # Screen enable
-bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left 
+bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left && i3-msg restart
 
 # Media player controls
 bindsym XF86AudioPlay exec cmus-remote --pause
@@ -214,7 +214,7 @@ bindsym XF86AudioStop exec cmus-remote --stop
 
 # Screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
-bindsym $mod+Shift+a exec maim -s ~/downloads/$(date +%s).png
+bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +%s).png
 
 # autostart
 #exec_always google-chrome-stable

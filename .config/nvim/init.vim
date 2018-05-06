@@ -163,3 +163,9 @@ nmap <silent> + ddp
 nmap <silent> _ ddkP
 nmap <silent> ; :Buffers<CR>
 nmap <silent> <C-l> :Files<CR>
+
+" printing / hardcopy
+let &printexpr="(v:cmdarg=='' ? ".
+    \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".
+    \". ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error".
+    \" : system('mv '.v:fname_in.' '.v:cmdarg) + v:shell_error)"

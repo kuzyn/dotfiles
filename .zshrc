@@ -67,6 +67,8 @@ alias wh='ws; sudo netctl start wlp3s0-SKYB8BE5'
 alias write='nvim ~/write/'
 alias ws='sudo netctl stop-all'
 alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
+alias github-labels-copy='copy-github-labels'
+alias scan='. ~/.config/scripts/scan.sh'
 
 # Prompt
 PS1='%B%F{210}%n(λ)%M%f%b%F{224}‡ %f%b'
