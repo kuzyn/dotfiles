@@ -40,35 +40,41 @@ _has() {
 ###########
 ###########
 
-# Aliases
-alias br='sudo systemctl restart bluetooth'
+# Overrides
 alias cat='pygmentize -g'
-alias chrome='google-chrome-stable'
-alias define='dict -d wn'
+alias ls='ls -h --color=auto'
+alias lsa='ls -lha --color=auto'
+alias mkdir='mkdir -p'
+alias ssh='TERM=xterm ssh'
+alias vim='nvim'
+
+# Dotfiles
 alias ei3='nvim ~/.config/i3/config'
 alias ev='nvim ~/.config/nvim/init.vim'
 alias ez='nvim ~/.zshrc'
-alias gb='git branch --all'
-alias gl='git log --oneline -n10'
-alias lists='nvim ~/write/lists/'
-alias ls='ls -h --color=auto'
-alias lsa='ls -lha --color=auto'
-alias md='grip -b'
-alias mkdir='mkdir -p'
-alias pdf-view='apvlv'
+
+# System helpers
+alias br='sudo systemctl restart bluetooth'
+alias fetch-music='rsync -avzuP --bwlimit=500 --ignore-existing  samuelcousin.com:~/downloads/completed/ ~/tammy/music/'
 alias rb='sudo systemctl restart bluetooth'
-alias reload-xresources='xrdb ~/.Xresources'
+alias scan='. ~/.config/scripts/scan.sh'
 alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
 alias stats='archey3'
-alias sz='source ~/.zshrc'
-alias thesaurus='dict -d moby-thesaurus'
-alias vim='nvim'
 alias wh='ws; sudo netctl start wlp3s0-SKYB8BE5'
-alias write='nvim ~/write/'
 alias ws='sudo netctl stop-all'
 alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
+
+# Aliases
+alias define='dict -d wn'
+alias gb='git branch --all'
 alias github-labels-copy='copy-github-labels'
-alias scan='. ~/.config/scripts/scan.sh'
+alias gl='git log --oneline -n10'
+alias lists='nvim ~/write/lists/'
+alias md='grip -b'
+alias pdf-view='apvlv'
+alias sz='source ~/.zshrc'
+alias thesaurus='dict -d moby-thesaurus'
+alias write='nvim ~/write/'
 
 # Prompt
 PS1='%B%F{210}%n(λ)%M%f%b%F{224}‡ %f%b'

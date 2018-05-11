@@ -94,8 +94,8 @@ set $ws4 "4> term1"
 set $ws5 "5> term2"
 set $ws6 "6> wtv1"
 set $ws7 "7> wtv2"
-set $ws8 "8> cmus"
-set $ws9 "9> irc"
+set $ws8 "8> irc"
+set $ws9 "9> cmus"
 set $ws10 "10> chat"
 
 # switch to workspace
