@@ -34,6 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'python-mode/python-mode', {'branch': 'develop'}
   "elixir
   Plug 'elixir-editors/vim-elixir'
+  Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 
