@@ -37,6 +37,7 @@ fi
 # set
 xset -b
 setxkbmap gb
+setxkbmap -option caps:escape
 
 # spawn
 udiskie &

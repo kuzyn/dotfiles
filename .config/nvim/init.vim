@@ -162,8 +162,14 @@ nmap <silent> <C-z> <Plug>(ale_previous_wrap)
 nmap <silent> <C-x> <Plug>(ale_next_wrap)
 nmap <silent> + ddp
 nmap <silent> _ ddkP
-nmap <silent> ; :Buffers<CR>
+nmap <silent> <C-k> :Buffers<CR>
 nmap <silent> <C-l> :Files<CR>
+
+" disable arrows
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " printing / hardcopy
 let &printexpr="(v:cmdarg=='' ? ".
