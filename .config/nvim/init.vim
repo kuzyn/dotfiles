@@ -4,8 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jacoborus/tender.vim'
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
-  "Plug 'vim-airline/vim-airline'
-  "Plug 'vim-airline/vim-airline-themes'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/fzf' 
   Plug 'junegunn/fzf.vim'
@@ -13,7 +11,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mgee/lightline-bufferline'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'gioele/vim-autoswap'
-  "Plug 'vim-syntastic/syntastic'
   Plug 'w0rp/ale'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree'
@@ -21,15 +18,12 @@ call plug#begin('~/.config/nvim/plugged')
   "js
   Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
-  " Plug 'mtscout6/syntastic-local-eslint.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'heavenshell/vim-jsdoc'
   "git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  "md
-  "Plug 'JamshedVesuna/vim-markdown-preview'
   "py
   Plug 'python-mode/python-mode', {'branch': 'develop'}
   "elixir
@@ -43,11 +37,9 @@ set number
 set relativenumber
 set encoding=utf-8
 set updatetime=250
-"set colorcolumn=80
 call matchadd('ColorColumn', '\%>81v\+', 100)
 set clipboard+=unnamedplus
 set undolevels=300
-" set guifont=Source\ Code\ Pro\ for\ Powerline\ 11 
 set wildchar=<Tab> wildmenu wildmode=full
 set splitbelow
 set splitright
@@ -63,13 +55,6 @@ filetype plugin indent on
 syntax enable
 colorscheme tender
 highlight clear SignColumn
-
-"airline
-" let g:airline_powerline_fonts = 1 
-" let g:airline_theme = 'tender'
-" let g:airline#extensions#ale#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
 
 "gitgutter
 set signcolumn=yes
@@ -91,22 +76,14 @@ let g:tern_map_keys=1
 let g:SuperTabClosePreviewOnPopupClose = 1
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
-" syntastic
-"let g:syntastic_javascript_checkers=['eslint']
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 1
-
 "md files
-"au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
-"let vim_markdown_preview_use_xdg_open=1
-"let vim_markdown_preview_toggle=1
-"let vim_markdown_preview_github=1
+au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_toggle=1
+let vim_markdown_preview_github=1
+
+"yml files
+au FileType yaml setlocal textwidth=80 tabstop=2 shiftwidth=2 linebreak
 
 " pymode
 let pymode_lint_cwindow = 0
@@ -117,7 +94,7 @@ au FileType python set shiftwidth=4 tabstop=4 softtabstop=4
 let g:pymode_python = 'python3'
 
 "Javascript
-au BufNewFile,BufRead *.js,*.json set tabstop=2 shiftwidth=2 
+au BufNewFile,BufRead *.js,*.ts,*.json set tabstop=2 shiftwidth=2 
 
 "ale
 let g:ale_fixers = {
@@ -135,7 +112,6 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 
 " NERDtree
-"autocmd vimenter * NERDTree
 nmap <C-n> :NERDTreeToggle<CR>
 
 " ack.vim
@@ -147,11 +123,6 @@ set rtp+=/usr/bin/fzf
 " sessions
 nmap <F2> :mksession! ~/.config/nvim/vim_session<CR>
 nmap <F3> :source ~/.config/nvim/vim_session<CR>
-
-" pasting
-"nnoremap <F2> :set invpaste paste?<CR>
-"set pastetoggle=<F2>
-"set showmode
 
 " keymaps
 nmap <silent> <C-h> :set hlsearch!<CR>

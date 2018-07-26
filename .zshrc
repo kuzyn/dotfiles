@@ -47,6 +47,9 @@ alias lsa='ls -lha --color=auto'
 alias mkdir='mkdir -p'
 alias ssh='TERM=xterm ssh'
 alias vim='nvim'
+alias vi='nvim'
+alias grep='ag'
+alias wifi-menu='ws; wifi-menu'
 
 # Dotfiles
 alias ei3='nvim ~/.config/i3/config'
@@ -64,16 +67,24 @@ alias wd='sudo netctl stop-all; sudo systemctl start NetworkManager'
 alias wh='ws; sudo netctl start wlp3s0-SKYB8BE5'
 alias ws='sudo netctl stop-all; sudo systemctl stop NetworkManager'
 alias ww='ws; sudo netctl start wlp3s0-LighthouseFibre'
+alias services='systemctl --type=service --no-pager'
 alias service-enabled='systemctl list-unit-files | grep enabled'
 alias service-running='systemctl list-units -t service --no-pager --no-legend | grep active'
-alias no-lid-switch='systemd-inhibit --what=handle-lid-switch sleep 1d'
+alias lid-switch-disable='systemd-inhibit --what=handle-lid-switch sleep 1d'
 alias battery-stats='upower -i $(upower -e | grep 'BAT')'
+alias leases-dhcp="cat /var/lib/misc/dnsmasq.leases | awk '\$0 {print \$3,\$4,\$5}'"
+alias ssid-scan="sudo iw dev wlp3s0 scan | grep SSID"
+alias public-ip="wget -q -O - http://checkip.dyndns.org|sed s/[^0-9.]//g"
+alias clean-pacman-cache="paccache -rk1 && paccache -ruk0"
+alias clean-logs="sudo journalctl --vacuum-time=1months"
 
 # Aliases
 alias define='dict -d wn'
 alias gb='git branch --all'
 alias github-labels-copy='copy-github-labels'
 alias gl='git log --oneline -n10'
+alias gs='git status -s'
+alias ga='git add .'
 alias lists='nvim ~/write/lists/'
 alias md='grip -b'
 alias pdf-view='apvlv'
@@ -131,3 +142,6 @@ fi
 if _has go; then
         export GO_PATH=\"\$HOME/code/go\"
 fi
+
+# make sure that we're home
+cd ~
