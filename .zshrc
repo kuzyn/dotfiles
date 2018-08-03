@@ -58,7 +58,8 @@ alias ez='nvim ~/.zshrc'
 
 # System helpers
 alias br='sudo systemctl restart bluetooth'
-alias fetch-music='rsync -avzuP --bwlimit=500 --ignore-existing  samuelcousin.com:~/downloads/completed/ ~/tammy/music/'
+alias cmus-reload-lib="dir ~/tammy/music/*/*.mp3 -R -1 --quoting-style=literal > ~/tammy/music/library.m3u"
+alias fetch-music='rsync -avzuP --bwlimit=500 --ignore-existing  samuelcousin.com:~/downloads/completed/ ~/tammy/music/; cmus-reload-lib'
 alias rb='sudo systemctl restart bluetooth'
 alias scan='bash ~/.config/scripts/scan.sh'
 alias screen='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
@@ -142,6 +143,11 @@ fi
 if _has go; then
         export GO_PATH=\"\$HOME/code/go\"
 fi
+
+# kubextl stuff
+#if [ $commands[kubectl] ]; then
+#  source <(kubectl completion zsh)
+#fi
 
 # make sure that we're home
 cd ~
