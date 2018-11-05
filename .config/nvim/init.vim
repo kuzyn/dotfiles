@@ -49,6 +49,7 @@ set showtabline=2
 set fileformat=unix
 set expandtab 
 set autoindent
+set autochdir
 filetype plugin indent on
 
 "theme
@@ -77,7 +78,8 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
 "md files
-au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
+"au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
+au BufRead,BufNewFile *.md setlocal
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_toggle=1
 let vim_markdown_preview_github=1
@@ -135,6 +137,7 @@ nmap <silent> + ddp
 nmap <silent> _ ddkP
 nmap <silent> <C-k> :Buffers<CR>
 nmap <silent> <C-l> :Files<CR>
+nmap <silent> <F5> ggg?G``
 
 " disable arrows
 noremap <Up> <NOP>

@@ -41,7 +41,6 @@ setxkbmap -option caps:escape
 
 # spawn
 udiskie &
-pulseaudio -D
 
 # globals
 export LANG=en_GB.UTF-8
@@ -49,8 +48,9 @@ export EDITOR='nvim'
 export TERM='xterm-256color'
 export TERMINAL='termite'
 
-# yarn
-export PATH="$PATH:`~/.yarn/bin`"
-
-# wm
+#wm
 exec i3
+
+# pulseaudio
+pulseaudio -k
+pulseaudio -D

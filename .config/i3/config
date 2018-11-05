@@ -239,8 +239,6 @@ client.unfocused                #e9967a #e9967a #ffddd1 #e9967a
 client.urgent                   #f3c5b6 #f3c5b6 #ffddd1 #e9967a 
 client.background               #e9967a
 
-# program window specifics
-for_window [window_role="GtkFileChooserDialog"] resize shrink height 400px
 
 # border / titlebar
 for_window [class="^.*"] border pixel 0
@@ -256,3 +254,5 @@ for_window [workspace="irc"] border pixel 50
 for_window [workspace="chat"] border pixel 50
 new_window 1pixel
 
+# program window specifics
+for_window [window_type="dialog"] border pixel 5
