@@ -87,16 +87,16 @@ bindsym $mod+a focus parent
 set $color1 #e9967a
 
 # workspaces variables
-set $ws1 "1> browser"
-set $ws2 "2> work"
-set $ws3 "3> editor"
-set $ws4 "4> term1"
-set $ws5 "5> term2"
-set $ws6 "6> wtv1"
-set $ws7 "7> wtv2"
-set $ws8 "8> irc"
-set $ws9 "9> cmus"
-set $ws10 "10> chat"
+set $ws1 "1>"
+set $ws2 "2>"
+set $ws3 "3>"
+set $ws4 "4>"
+set $ws5 "5>"
+set $ws6 "6>"
+set $ws7 "7>"
+set $ws8 "8>"
+set $ws9 "9>"
+set $ws10 "10>"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -129,7 +129,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -196,8 +196,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
@@ -216,13 +216,6 @@ bindsym XF86AudioStop exec cmus-remote --stop
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +%s).png
 
-# autostart
-#exec_always google-chrome-stable
-#exec --no-startup-id i3-msg workspace $ws10; exec urxvt -e cmus
-
-# autoassign
-assign [class="Slack"] $ws10
-
 # toggle workspace to output
 bindsym $mod+m move workspace to output left
 
@@ -232,27 +225,27 @@ bindsym $mod+n workspace next
 # colors
 # border  background text indicator
 client.focused                  #e9967a #e9967a #ffddd1 #e9967a 
-client.focused_inactive         #e9967a #e9967a #ffddd1 #e9967a 
+client.focused_inactive         #e9967a #1d1f21 #e9967a #e9967a 
 #client.focused_inactive        #c16548 #c16548 #ffddd1 #e9967a 
 #client.unfocused               #c16548 #c16548 #ffddd1 #e9967a 
-client.unfocused                #e9967a #e9967a #ffddd1 #e9967a 
+client.unfocused                #000 #1d1f21 #000 #000
 client.urgent                   #f3c5b6 #f3c5b6 #ffddd1 #e9967a 
 client.background               #e9967a
 
 
 # border / titlebar
-for_window [class="^.*"] border pixel 0
-for_window [workspace="browser"] border pixel 50
-for_window [workspace="work"] border pixel 50
-for_window [workspace="editor"] border pixel 1
-for_window [workspace="term1"] border pixel 1
-for_window [workspace="term2"] border pixel 1
-for_window [workspace="wtv1"] border pixel 25
-for_window [workspace="wtv2"] border pixel 25
-for_window [workspace="cmus"] border pixel 50
-for_window [workspace="irc"] border pixel 50
-for_window [workspace="chat"] border pixel 50
-new_window 1pixel
+for_window [class="^.*"] border pixel 1
+# for_window [workspace="browser"] border pixel 50
+# for_window [workspace="work"] border pixel 50
+# for_window [workspace="editor"] border pixel 1
+# for_window [workspace="term1"] border pixel 1
+# for_window [workspace="term2"] border pixel 1
+# for_window [workspace="wtv1"] border pixel 25
+# for_window [workspace="wtv2"] border pixel 25
+# for_window [workspace="cmus"] border pixel 50
+# for_window [workspace="irc"] border pixel 50
+# for_window [workspace="chat"] border pixel 50
+# new_window 1pixel
 
 # program window specifics
 for_window [window_type="dialog"] border pixel 5

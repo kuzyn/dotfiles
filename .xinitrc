@@ -50,6 +50,7 @@ export TERMINAL='termite'
 
 #wm
 exec i3
+dunst > /dev/null 2>&1 &
 
 # pulseaudio
 pulseaudio -k
