@@ -203,7 +203,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
 
 # Screen enable
-bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left && i3-msg restart
+bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left --output LVDS1 --mode 1366x768 --rotate normal && i3-msg restart
 
 # Media player controls
 bindsym XF86AudioPlay exec cmus-remote --pause

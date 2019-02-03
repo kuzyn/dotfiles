@@ -61,8 +61,8 @@ alias cmus-reload-lib="dir ~/tammy/music/*/*.mp3 -R -1 --quoting-style=literal >
 alias fetch-music='rsync -avzuP --bwlimit=500 --ignore-existing  samuelcousin.com:~/downloads/completed/ ~/tammy/music/; cmus-reload-lib'
 alias rb='sudo systemctl restart bluetooth'
 alias scan='bash ~/.config/scripts/scan.sh'
-alias screen-rotate='xrandr --output VGA1 --right-of LVDS1 --auto --rotate left'
-alias stats='archey3'
+alias screen-rotate='xrandr --output VGA1 --auto --right-of LVDS1 --auto --rotate left'
+alias stats='neofetch'
 alias wd='sudo netctl stop-all; sudo systemctl start NetworkManager'
 alias wh='ws; sudo netctl start wlp3s0-CHATEAU_BURLINGTON'
 alias pulse-restart='pulseaudio -k; pulseaudio -D'
@@ -80,6 +80,10 @@ alias clean-yay-cache="yay -Sc"
 alias clean-pacman-cache="paccache -rk1 && paccache -ruk0"
 alias clean-logs="sudo journalctl --vacuum-time=1months"
 alias sz='source ~/.zshrc'
+alias tag-music='beet import ~/tammy/music -qai'
+alias network-share='smbclient \\\\192.168.100.1\\public'
+alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org samuelcousin.com:~/backup/matebox --exclude='.git'"
+alias night-mode='xcalib -invert -alter; xbacklight -set 1'
 
 # Aliases
 alias define='dict -d wn'
@@ -94,6 +98,8 @@ alias pdf-view='apvlv'
 alias thesaurus='dict -d moby-thesaurus'
 alias write='nvim ~/write/'
 alias webcam='streamer -o ~/downloads/webcam-$(date +%s).jpeg'
+alias projector='xrandr --output VGA1 --rotate normal --mode 1024x768 --output LVDS1 --mode 1024x768 --same-as VGA1'
+alias editor='shotcut'
 
 # Prompt
 PS1='%B%F{210}%n(λ)%M%f%b%F{224}‡ %f%b'

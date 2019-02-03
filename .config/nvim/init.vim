@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
   Plug 'pangloss/vim-javascript'
   Plug 'heavenshell/vim-jsdoc'
+  Plug 'posva/vim-vue'
   "git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
@@ -96,7 +97,7 @@ au FileType python set shiftwidth=4 tabstop=4 softtabstop=4
 let g:pymode_python = 'python3'
 
 "Javascript
-au BufNewFile,BufRead *.js,*.ts,*.json set tabstop=2 shiftwidth=2 
+au BufNewFile,BufRead *.js,*.ts,*.json,*.vue set tabstop=2 shiftwidth=2 
 
 "ale
 let g:ale_fixers = {
