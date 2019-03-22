@@ -4,6 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jacoborus/tender.vim'
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
+  Plug 'gbigwood/Clippo'
   Plug 'mileszs/ack.vim'
   Plug 'junegunn/fzf' 
   Plug 'junegunn/fzf.vim'

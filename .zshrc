@@ -19,6 +19,7 @@ compinit
 ### kuzyn stuff
 ###
 
+eval "$(dircolors ~/.dircolors)"
 
 ###########
 # HELPERS #
@@ -41,8 +42,9 @@ _has() {
 ###########
 
 # Overrides
+alias diff='diff --color=auto'
 alias ls='ls --color=auto'
-alias lsa='ls -lha --color=auto'
+alias lsa='ls -lha'
 alias mkdir='mkdir -p'
 alias ssh='TERM=xterm ssh'
 alias vim='nvim'
@@ -58,7 +60,7 @@ alias ez='nvim ~/.zshrc'
 # System helpers
 alias br='sudo systemctl restart bluetooth'
 alias cmus-reload-lib="dir ~/tammy/music/*/*.mp3 -R -1 --quoting-style=literal > ~/tammy/music/library.m3u"
-alias fetch-music='rsync -avzuP --bwlimit=500 --ignore-existing  samuelcousin.com:~/downloads/completed/ ~/tammy/music/; cmus-reload-lib'
+alias fetch-music='rsync -avzuP samuelcousin.com:~/downloads/completed/ ~/tammy/music/; cmus-reload-lib'
 alias rb='sudo systemctl restart bluetooth'
 alias scan='bash ~/.config/scripts/scan.sh'
 alias screen-rotate='xrandr --output VGA1 --auto --right-of LVDS1 --auto --rotate left'
@@ -79,6 +81,7 @@ alias public-ip="wget -q -O - http://checkip.dyndns.org|sed s/[^0-9.]//g"
 alias clean-yay-cache="yay -Sc"
 alias clean-pacman-cache="paccache -rk1 && paccache -ruk0"
 alias clean-logs="sudo journalctl --vacuum-time=1months"
+alias clean-progs="sudo bleachbit system.* chromium.* firefox.* -c"
 alias sz='source ~/.zshrc'
 alias tag-music='beet import ~/tammy/music -qai'
 alias network-share='smbclient \\\\192.168.100.1\\public'
@@ -146,16 +149,3 @@ if _has fzf && _has ag; then
         --height 20% --border
         '
 fi
-
-# override our go path
-if _has go; then
-        export GO_PATH=\"\$HOME/code/go\"
-fi
-
-# kubextl stuff
-#if [ $commands[kubectl] ]; then
-#  source <(kubectl completion zsh)
-#fi
-
-# make sure that we're home
-cd ~

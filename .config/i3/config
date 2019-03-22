@@ -30,7 +30,7 @@ font pango:Source Code Pro 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal --directory=/home/kuzyn
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -i -nb '#e9967a' -nf '#ffddd1' -sb '#c16548'
