@@ -85,7 +85,8 @@ if ($percent <= 15) {
 }
 
 if ($percent <= 10) {
-        system ("notify-send '*super* low battery'");
+        system ("paplay ~/.config/scripts/notification/beep.wav");
+        system ("notify-send -u critical '*super* low battery'");
 		exit(33);
 	}
 }

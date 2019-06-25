@@ -1,12 +1,11 @@
 "plugins
 call plug#begin('~/.config/nvim/plugged')
+
   "editor
   Plug 'jacoborus/tender.vim'
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
-  Plug 'gbigwood/Clippo'
-  Plug 'mileszs/ack.vim'
-  Plug 'junegunn/fzf' 
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'mgee/lightline-bufferline'
@@ -15,22 +14,19 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'w0rp/ale'
   Plug 'jiangmiao/auto-pairs'
   Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'sheerun/vim-polyglot'
+
   "js
-  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'] }
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript'] }
+  Plug 'ternjs/tern_for_vim', { 'for': ['javascript'], 'do': ['npm install']}
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
   Plug 'pangloss/vim-javascript'
-  Plug 'heavenshell/vim-jsdoc'
   Plug 'posva/vim-vue'
+  Plug 'maxmellon/vim-jsx-pretty'
+
   "git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  "py
-  Plug 'python-mode/python-mode', {'branch': 'develop'}
-  "elixir
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 
@@ -45,7 +41,7 @@ set undolevels=300
 set wildchar=<Tab> wildmenu wildmode=full
 set splitbelow
 set splitright
-set wildignore=/home/kuzyn/code/**/node_modules/**
+set wildignore=./**/node_modules/**
 set hidden
 set showtabline=2
 set fileformat=unix
@@ -59,96 +55,90 @@ syntax enable
 colorscheme tender
 highlight clear SignColumn
 
+"auto-pairs
+let g:AutoPairsFlyMode = 0
+
 "gitgutter
 set signcolumn=yes
-let g:gitgutter_max_signs=9999
+let g:gitgutter_max_signs = 9999
 
 "deoplete
 let g:deoplete#enable_at_startup = 1
 set completeopt=longest,menuone,preview
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs']
+let g:deoplete#max_list = 200
+let g:deoplete#on_insert_enter = 'true'
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ ]
+
 
 "tern
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_map_keys = 1
 
 "supertab
 let g:SuperTabClosePreviewOnPopupClose = 1
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"md files
-"au BufRead,BufNewFile *.md setlocal textwidth=80 linebreak
-au BufRead,BufNewFile *.md setlocal
-let vim_markdown_preview_use_xdg_open=1
-let vim_markdown_preview_toggle=1
-let vim_markdown_preview_github=1
+" yml 
+au BufNewFile,BufRead *.yml,*.yaml setlocal textwidth=80 tabstop=2 shiftwidth=2 linebreak
 
-"yml files
-au FileType yaml setlocal textwidth=80 tabstop=2 shiftwidth=2 linebreak
+" js
+au BufNewFile,BufRead *.js,*.ts,*.json,*.vue,*.jsx set tabstop=2 shiftwidth=2 
 
-" pymode
-let pymode_lint_cwindow = 0
-let python_lint_async = 1
-
-" Python
-au FileType python set shiftwidth=4 tabstop=4 softtabstop=4 
-let g:pymode_python = 'python3'
-
-"Javascript
-au BufNewFile,BufRead *.js,*.ts,*.json,*.vue set tabstop=2 shiftwidth=2 
+" web
+au BufNewFile,BufRead *.html,*.css set tabstop=2 shiftwidth=2 
 
 "ale
 let g:ale_fixers = {
       \  'javascript': ['eslint']
       \}
 
-" lightline
-let g:lightline = {}
-let g:lightline.active = {} 
-let g:lightline.active.left = [['mode', 'paste'], ['gitbranch', 'filename', 'modified']]
-let g:lightline.active.right = [['lineinfo'], ['percent'], ['readonly']]
-let g:lightline.component_type = { 'readonly': 'error', 'buffers': 'tabsel' }
-let g:lightline.component_function = {'gitbranch': 'fugitive#head'}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+"lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'filename': 'LightLineFilename'
+      \ },
+      \ }
+
+function! LightLineFilename()
+  return expand('%:p')
+endfunction
+
+" lightline-bufferline
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline#bufferline#shorten_path = 0
 
 " NERDtree
 nmap <C-n> :NERDTreeToggle<CR>
-
-" ack.vim
-let g:ackprg = 'ag --vimgrep'
-
-" fzf
-set rtp+=/usr/bin/fzf
-
-" sessions
-nmap <F2> :mksession! ~/.config/nvim/vim_session<CR>
-nmap <F3> :source ~/.config/nvim/vim_session<CR>
 
 " keymaps
 nmap <silent> <C-h> :set hlsearch!<CR>
 nmap <silent> <C-s> :bnext<CR>
 nmap <silent> <C-a> :bprevious<CR>
-nmap <silent> <C-j> <Plug>(jsdoc)
-nmap <silent> <C-z> <Plug>(ale_previous_wrap)
-nmap <silent> <C-x> <Plug>(ale_next_wrap)
-nmap <silent> + ddp
-nmap <silent> _ ddkP
+nmap <silent> <C-z> <Plug>(ale_previous_wrap)<CR>
+nmap <silent> <C-x> <Plug>(ale_next_wrap)<CR>
 nmap <silent> <C-k> :Buffers<CR>
-nmap <silent> <C-l> :Files<CR>
-nmap <silent> <F5> ggg?G``
+nmap <silent> <C-f> :Files<CR>
+nmap <silent> <C-l> :Lines<CR>
+nmap <silent> <C-c> :Commits<CR>
+nmap <silent> <F5> ggg?G``<CR>
 
 " disable arrows
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-
-" printing / hardcopy
-let &printexpr="(v:cmdarg=='' ? ".
-    \"system('lpr' . (&printdevice == '' ? '' : ' -P' . &printdevice)".
-    \". ' ' . v:fname_in) . delete(v:fname_in) + v:shell_error".
-    \" : system('mv '.v:fname_in.' '.v:cmdarg) + v:shell_error)"

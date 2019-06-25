@@ -196,8 +196,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
@@ -215,6 +215,9 @@ bindsym XF86AudioStop exec cmus-remote --stop
 # Screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +%s).png
+
+# timestamp
+bindsym $mod+Shift+t exec ts
 
 # toggle workspace to output
 bindsym $mod+m move workspace to output left

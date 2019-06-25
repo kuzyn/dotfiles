@@ -44,74 +44,72 @@ _has() {
 # Overrides
 alias diff='diff --color=auto'
 alias ls='ls --color=auto'
-alias lsa='ls -lha'
 alias mkdir='mkdir -p'
 alias ssh='TERM=xterm ssh'
 alias vim='nvim'
 alias vi='nvim'
-alias grep='ag'
 alias wifi-menu='ws; wifi-menu'
 
 # Dotfiles
 alias ei3='nvim ~/.config/i3/config'
 alias ev='nvim ~/.config/nvim/init.vim'
 alias ez='nvim ~/.zshrc'
+alias sz='source ~/.zshrc'
 
-# System helpers
-alias br='sudo systemctl restart bluetooth'
-alias cmus-reload-lib="dir ~/tammy/music/*/*.mp3 -R -1 --quoting-style=literal > ~/tammy/music/library.m3u"
-alias fetch-music='rsync -avzuP samuelcousin.com:~/downloads/completed/ ~/tammy/music/; cmus-reload-lib'
-alias rb='sudo systemctl restart bluetooth'
-alias scan='bash ~/.config/scripts/scan.sh'
-alias screen-rotate='xrandr --output VGA1 --auto --right-of LVDS1 --auto --rotate left'
-alias stats='neofetch'
-alias wd='sudo netctl stop-all; sudo systemctl start NetworkManager'
-alias wh='ws; sudo netctl start wlp3s0-CHATEAU_BURLINGTON'
-alias pulse-restart='pulseaudio -k; pulseaudio -D'
-alias ws='sudo netctl stop-all; sudo systemctl stop NetworkManager; sudo ip link set dev wlp3s0 down'
-alias ww='ws; sudo netctl start wlp3s0-SIGNAL_AP'
-alias services='systemctl --type=service --no-pager'
+# music
+alias cmus-reload-lib="dir ~/music/*/*.mp3 -R -1 --quoting-style=literal > ~/music/library.m3u"
+alias fetch-music='rsync -avzuP samuelcousin.com:~/downloads/completed/ ~/music/; cmus-reload-lib; tag-music'
+alias tag-music='beet import ~/music -qai'
+
+# system
 alias service-enabled='systemctl list-unit-files | grep enabled'
 alias service-running='systemctl list-units -t service --no-pager --no-legend | grep active'
-alias lid-switch-disable='systemd-inhibit --what=handle-lid-switch sleep 1d'
-alias battery-stats='upower -i $(upower -e | grep 'BAT')'
-alias leases-dhcp="cat /var/lib/misc/dnsmasq.leases | awk '\$0 {print \$3,\$4,\$5}'"
-alias ssid-scan="sudo iw dev wlp3s0 scan | grep SSID"
-alias public-ip="wget -q -O - http://checkip.dyndns.org|sed s/[^0-9.]//g"
+alias screen-rotate='xrandr --output VGA1 --auto --right-of LVDS1 --auto --rotate left'
 alias clean-yay-cache="yay -Sc"
 alias clean-pacman-cache="paccache -rk1 && paccache -ruk0"
-alias clean-logs="sudo journalctl --vacuum-time=1months"
-alias clean-progs="sudo bleachbit system.* chromium.* firefox.* -c"
-alias sz='source ~/.zshrc'
-alias tag-music='beet import ~/tammy/music -qai'
-alias network-share='smbclient \\\\192.168.100.1\\public'
-alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org samuelcousin.com:~/backup/matebox --exclude='.git'"
-alias night-mode='xcalib -invert -alter; xbacklight -set 1'
+alias clean-logs="sudo journalctl --vacuum-time=1weeks"
+alias battery-stats='upower -i $(upower -e | grep 'BAT')'
+alias ts=' echo $(date --date=@$(xclip -o)) | while read TS; do notify-send "$TS"; done'
 
-# Aliases
-alias define='dict -d wn'
+# network
+alias public-ip="wget -q -O - http://checkip.dyndns.org|sed s/[^0-9.]//g"
+alias wh='ws; sudo netctl start wlp3s0-CHATEAU_BURLINGTON'
+alias ws='sudo netctl stop-all; sudo systemctl stop NetworkManager; sudo ip link set dev wlp3s0 down'
+alias ww='ws; sudo netctl start wlp3s0-SIGNAL_AP'
+
+
+# screen
+alias projector-on='xrandr --output HDMI1 --rotate normal --mode 1280x720 --output LVDS1 --mode 1280x720 --same-as HDMI1'
+alias projector-off='xrandr --output HDMI1 --off --output LVDS1 --auto' 
+alias lid-switch-disable='systemd-inhibit --what=handle-lid-switch sleep 1d'
+alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org samuelcousin.com:~/backup/matebox --exclude='.git' --exclude='node_modules'"
+
+# picture/video
+alias scan='bash ~/.config/scripts/scan.sh'
+alias pdf-view='apvlv'
+alias webcam='streamer -o ~/downloads/webcam-$(date +%s).jpeg'
+alias video-editor='shotcut'
+
+# git
 alias gb='git branch --all'
-alias github-labels-copy='copy-github-labels'
 alias gl='git log --oneline -n10'
 alias gs='git status -s'
 alias ga='git add .'
+
+# writing
 alias lists='nvim ~/write/lists/'
-alias md='grip -b'
-alias pdf-view='apvlv'
-alias thesaurus='dict -d moby-thesaurus'
 alias write='nvim ~/write/'
-alias webcam='streamer -o ~/downloads/webcam-$(date +%s).jpeg'
-alias projector='xrandr --output VGA1 --rotate normal --mode 1024x768 --output LVDS1 --mode 1024x768 --same-as VGA1'
-alias editor='shotcut'
+alias define='dict -d wn'
+alias thesaurus='dict -d moby-thesaurus'
 
 # Prompt
-PS1='%B%F{210}%n(λ)%M%f%b%F{224}‡ %f%b'
+PS1='%B%F{210}%n(∴)%M%f%b%F{224}‡ %f%b'
 PS_DEFAULT=$PS1
 
 # vi mode prompt
 function zle-line-init zle-keymap-select {
 case ${KEYMAP} in
-        (vicmd)      PROMPT='%B%F{110}%n(λ)%M%f%b%F{224}‡ %f%b' ;;
+        (vicmd)      PROMPT='%B%F{110}%n(∵)%M%f%b%F{224}‡ %f%b' ;;
         (main|viins) PROMPT=$PS_DEFAULT ;;
         (*)          PROMPT=$PS_DEFAULT ;;
 esac
@@ -149,3 +147,5 @@ if _has fzf && _has ag; then
         --height 20% --border
         '
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
