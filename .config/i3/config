@@ -214,7 +214,7 @@ bindsym XF86AudioStop exec cmus-remote --stop
 
 # Screenshot
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
-bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +%s).png
+bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +'%Y-%m-%d_%H%M%S').png
 
 # timestamp
 bindsym $mod+Shift+t exec ts

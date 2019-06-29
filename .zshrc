@@ -86,7 +86,6 @@ alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org 
 
 # picture/video
 alias scan='bash ~/.config/scripts/scan.sh'
-alias pdf-view='apvlv'
 alias webcam='streamer -o ~/downloads/webcam-$(date +%s).jpeg'
 alias video-editor='shotcut'
 
