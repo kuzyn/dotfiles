@@ -14,6 +14,9 @@ setxkbmap gb
 # load xmodmap key mapping
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
+# swap caps lock & escape
+setxkbmap -option caps:escape 
+
 # disable the terminal bell
 xset b off 
 

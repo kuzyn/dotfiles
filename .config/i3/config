@@ -103,7 +103,6 @@ bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
-bindsym $mod+grave workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
@@ -116,7 +115,6 @@ bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+grave move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
@@ -156,6 +154,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -203,7 +202,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 bindsym XF86TouchpadToggle exec /home/kuzyn/.config/scripts/toggle_touchpad.sh 
 
 # Screen enable
-bindsym XF86Display exec xrandr --output VGA1 --right-of LVDS1 --auto --rotate left --output LVDS1 --mode 1366x768 --rotate normal && i3-msg restart
+# bindsym XF86Display exec xrandr --output `xrandr | grep -e "DP[0-9] connected" | head -n1 | awk '{print $1}'` --right-of LVDS1 --auto --rotate left --output LVDS1 --mode 1366x768 --rotate normal && i3-msg restart
+bindsym XF86Display exec xrandr --output VGA1 --rotate normal --mode 1920x1080 --above LVDS1
 
 # Media player controls
 bindsym XF86AudioPlay exec cmus-remote --pause
@@ -217,10 +217,11 @@ bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+a exec maim -s ~/pictures/$(date +'%Y-%m-%d_%H%M%S').png
 
 # timestamp
-bindsym $mod+Shift+t exec ts
+bindsym $mod+Shift+T exec notify-send "$(date --date=@$(xclip -o))"
 
 # toggle workspace to output
-bindsym $mod+m move workspace to output left
+# bindsym $mod+m move workspace to output left
+bindsym $mod+m move workspace to output up
 
 # go to next/prev workspace
 bindsym $mod+n workspace next

@@ -23,6 +23,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'posva/vim-vue'
   Plug 'maxmellon/vim-jsx-pretty'
 
+  "elixir
+  Plug 'elixir-lang/vim-elixir'
+  Plug 'thinca/vim-ref'
+  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+
   "git
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
@@ -86,7 +91,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " yml 
-au BufNewFile,BufRead *.yml,*.yaml setlocal textwidth=80 tabstop=2 shiftwidth=2 linebreak
+au BufNewFile,BufRead *.yml,*.yaml set tabstop=2 shiftwidth=2 linebreak
 
 " js
 au BufNewFile,BufRead *.js,*.ts,*.json,*.vue,*.jsx set tabstop=2 shiftwidth=2 

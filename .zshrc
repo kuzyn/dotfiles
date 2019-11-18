@@ -58,7 +58,7 @@ alias sz='source ~/.zshrc'
 
 # music
 alias cmus-reload-lib="dir ~/music/*/*.mp3 -R -1 --quoting-style=literal > ~/music/library.m3u"
-alias fetch-music='rsync -avzuP samuelcousin.com:~/downloads/completed/ ~/music/; cmus-reload-lib; tag-music'
+alias fetch-music='rsync -avzuP --stats sweatbox:/home/kuzyn/caddy/completed/RED/ ~/music/ --exclude "seeding" && chmod 744 ~/music -R; cmus-reload-lib; tag-music'
 alias tag-music='beet import ~/music -qai'
 
 # system
@@ -73,16 +73,16 @@ alias ts=' echo $(date --date=@$(xclip -o)) | while read TS; do notify-send "$TS
 
 # network
 alias public-ip="wget -q -O - http://checkip.dyndns.org|sed s/[^0-9.]//g"
-alias wh='ws; sudo netctl start wlp3s0-CHATEAU_BURLINGTON'
+alias wh='ws; sudo netctl start wlp3s0-CHATEAU_BURLINGTON_5G'
 alias ws='sudo netctl stop-all; sudo systemctl stop NetworkManager; sudo ip link set dev wlp3s0 down'
 alias ww='ws; sudo netctl start wlp3s0-SIGNAL_AP'
-
+alias eth-dhcp='sudo bash /home/kuzyn/.config/scripts/eth-dhcp.sh'
 
 # screen
 alias projector-on='xrandr --output HDMI1 --rotate normal --mode 1280x720 --output LVDS1 --mode 1280x720 --same-as HDMI1'
 alias projector-off='xrandr --output HDMI1 --off --output LVDS1 --auto' 
 alias lid-switch-disable='systemd-inhibit --what=handle-lid-switch sleep 1d'
-alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org samuelcousin.com:~/backup/matebox --exclude='.git' --exclude='node_modules'"
+alias backup-remote="rsync -avzuP ~/pictures ~/read ~/docs ~/work ~/write ~/org oceanbox:~/backup/$HOST --exclude='.git' --exclude='node_modules'"
 
 # picture/video
 alias scan='bash ~/.config/scripts/scan.sh'
@@ -148,3 +148,43 @@ if _has fzf && _has ag; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+###-begin-pm2-completion-###
+### credits to npm for the completion file model
+#
+# Installation: pm2 completion >> ~/.bashrc  (or ~/.zshrc)
+#
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+if type complete &>/dev/null; then
+  _pm2_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           pm2 completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -o default -F _pm2_completion pm2
+elif type compctl &>/dev/null; then
+  _pm2_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       pm2 completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _pm2_completion + -f + pm2
+fi
+###-end-pm2-completion-###
